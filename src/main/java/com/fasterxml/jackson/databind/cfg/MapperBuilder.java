@@ -1,7 +1,5 @@
 package com.fasterxml.jackson.databind.cfg;
 
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.function.Consumer;
@@ -393,18 +391,8 @@ public abstract class MapperBuilder<M extends ObjectMapper,
     }
 
     private static <T> ServiceLoader<T> secureGetServiceLoader(final Class<T> clazz, final ClassLoader classLoader) {
-        final SecurityManager sm = System.getSecurityManager();
-        if (sm == null) {
-            return (classLoader == null) ?
-                    ServiceLoader.load(clazz) : ServiceLoader.load(clazz, classLoader);
-        }
-        return AccessController.doPrivileged(new PrivilegedAction<ServiceLoader<T>>() {
-            @Override
-            public ServiceLoader<T> run() {
-                return (classLoader == null) ?
-                        ServiceLoader.load(clazz) : ServiceLoader.load(clazz, classLoader);
-            }
-        });
+        return (classLoader == null) ?
+                ServiceLoader.load(clazz) : ServiceLoader.load(clazz, classLoader);
     }
 
     /**
