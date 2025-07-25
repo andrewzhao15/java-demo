@@ -39,8 +39,8 @@
     <!-- Until Jackson 2.11 (inclusive) baseline was JDK 7 (except for annotations/streaming),
          with 2.12 baseline became JDK8
       -->
-    <javac.src.version>1.8</javac.src.version>
-    <javac.target.version>1.8</javac.target.version>
+    <javac.src.version>23</javac.src.version>
+    <javac.target.version>23</javac.target.version>
 
     <!-- 12-Nov-2022, tatu: [databind#3659] Verify Android SDK compatibility.
 
